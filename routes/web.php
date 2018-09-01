@@ -20,6 +20,12 @@ Route::get('/login3', function () {
     return view('/auth/login3');
 });
 
+Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')
+    ->name('login.social')->middleware('guest', 'social_network');
+Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocialNetworkCallback')
+    ->middleware('guest', 'social_network');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

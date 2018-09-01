@@ -29,15 +29,13 @@
         </div>
 
         <div class="p-20">
-
             <form class="form-horizontal m-t-20" method="POST" action="{{ route('login') }}"
                   aria-label="{{ __('Login') }}">
                 @csrf
-
                 <div class="form-group-custom">
-                    <input type="email" id="email" required="required" value="{{ old('email') }}"/>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}"/>
 
-                    <label class="control-label" for="user-name">Usuario</label><i class="bar"></i>
+                    <label class="control-label" for="email">Usuario</label><i class="bar"></i>
 
                     @if ($errors->has('email'))
                         <small class="form-text text-danger">
@@ -46,19 +44,16 @@
                     @endif
 
                 </div>
-
                 <div class="form-group-custom">
-                    <input type="password" id="password" required="required"/>
-                    <label class="control-label" for="user-password">Contraseña</label><i class="bar"></i>
+                    <input type="password" id="password" name="password"/>
+                    <label class="control-label" for="password">Contraseña</label><i class="bar"></i>
 
                     @if ($errors->has('password'))
                         <small class="form-text text-danger">
                             <strong>{{ $errors->first('password') }}</strong>
                         </small>
                     @endif
-
                 </div>
-
                 <div class="form-group ">
                     <div class="col-12">
                         <div class="checkbox checkbox-primary">
@@ -68,7 +63,6 @@
 
                     </div>
                 </div>
-
                 <div class="form-group text-center m-t-20">
                     <div class="col-12">
                         <button class="btn btn-primary btn-block text-uppercase waves-effect waves-light" type="submit">
@@ -83,22 +77,21 @@
                             Olvido su contraseña?</a>
                     </div>
                 </div>
-
                 <div class="form-group m-t-40 m-b-0">
                     <div class="col-12 text-center">
                         <h5 class="font-18"><b>Ingresar con</b></h5>
                     </div>
                 </div>
-
                 <div class="form-group m-b-0 text-center">
                     <div class="col-12">
-                        <button type="button" class="btn btn-sm btn-facebook waves-effect waves-light m-t-20">
+                        <a type="button" class="btn btn-sm btn-facebook waves-effect waves-light m-t-20"
+                                href="{{ route('login.social','facebook') }}">
                             <i class="fa fa-facebook m-r-5"></i> Facebook
-                        </button>
-
-                        <button type="button" class="btn btn-sm btn-googleplus waves-effect waves-light m-t-20">
+                        </a>
+                        <a type="button" class="btn btn-sm btn-googleplus waves-effect waves-light m-t-20"
+                           href="{{ route('login.social','google')}}">
                             <i class="fa fa-google-plus m-r-5"></i> Google+
-                        </button>
+                        </a>
                     </div>
                 </div>
             </form>
